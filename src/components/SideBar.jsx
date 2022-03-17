@@ -20,8 +20,6 @@ import SideBarOption from "./SideBarOption";
 function SideBar() {
   const [channels, loading, error] = useCollection(db.collection("rooms"));
 
-  console.log(channels);
-
   return (
     <SideBarContainer>
       <SideBarHeader>
