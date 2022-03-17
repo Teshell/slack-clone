@@ -12,13 +12,15 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import AddIcon from "@material-ui/icons/Add";
 
 import { useCollection } from "react-firebase-hooks/firestore";
-import { db } from "../firebase";
+import { auth, db } from "../firebase";
 
 import styled from "styled-components";
 import SideBarOption from "./SideBarOption";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 function SideBar() {
-  const [channels, loading, error] = useCollection(db.collection("rooms"));
+  const [channels] = useCollection(db.collection("rooms"));
+  const [user] = useAuthState(auth);
 
   return (
     <SideBarContainer>
@@ -65,6 +67,7 @@ const SideBarContainer = styled.div`
   border-top: 1px solid #49274b;
   max-width: 260px;
   margin-top: 60px;
+  height: 100%;
 
   > hr {
     margin-top: 10px;
